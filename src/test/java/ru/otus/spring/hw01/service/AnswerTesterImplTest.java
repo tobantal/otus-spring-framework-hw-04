@@ -11,22 +11,17 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import ru.otus.spring.hw01.ConfigAnswerTesterImplTest;
 import ru.otus.spring.hw01.dto.Twit;
 import ru.otus.spring.hw01.exception.TwitIdMatchedException;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 @ContextConfiguration(classes = ConfigAnswerTesterImplTest.class)
-@ExtendWith(SpringExtension.class)
 @DisplayName("Класс AnswerTesterImpl должен ")
 public class AnswerTesterImplTest {
 

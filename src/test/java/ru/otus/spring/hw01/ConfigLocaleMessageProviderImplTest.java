@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import ru.otus.spring.hw01.service.LocaleMessageProviderImpl;
 
 @Import(LocaleMessageProviderImpl.class)
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yml")
 @Configuration
 public class ConfigLocaleMessageProviderImplTest {
 	

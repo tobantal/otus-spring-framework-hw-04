@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -15,12 +16,13 @@ import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
 import ru.otus.spring.hw01.service.LocaleMessageProvider;
 
 @Component
+@ConfigurationProperties("application")
 public class CsvDao implements Supplier<Queue<Task>> {
 	
 	private String delimeter = ";";
 
-	public void setDelimeter(String delimeter) {
-		this.delimeter = delimeter;
+	public String getDelimeter() {
+		return delimeter;
 	}
 
 	private final LocaleMessageProvider localeMessageProvider;

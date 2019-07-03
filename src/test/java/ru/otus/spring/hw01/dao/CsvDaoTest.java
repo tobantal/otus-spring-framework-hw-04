@@ -13,14 +13,11 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import ru.otus.spring.hw01.ConfigCsvDaoTest;
 import ru.otus.spring.hw01.domain.Task;
@@ -29,12 +26,13 @@ import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
 import ru.otus.spring.hw01.service.LocaleMessageProvider;
 
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = ConfigCsvDaoTest.class)
-@ExtendWith(SpringExtension.class)
 @DisplayName("Класс CsvDao должен ")
 class CsvDaoTest {
+	
+	@Autowired
+    ApplicationContext context;
 	
 	@Autowired
     LocaleMessageProvider fakeLocaleMessageProvider;

@@ -9,22 +9,16 @@ import java.util.function.Supplier;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import ru.otus.spring.hw01.ConfigAnswersAndQuestionsSuppliersTest;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.dto.Twit;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = ConfigAnswersAndQuestionsSuppliersTest.class)
-@ExtendWith(SpringExtension.class)
 @DisplayName("КлассQuestionsSupplier должен ")
 public class QuestionsSupplierTest {
 	

@@ -1,5 +1,6 @@
 package ru.otus.spring.hw01.domain;
 
+//@AllArgsConstructor
 public class Task {
 	
 	private Long id;

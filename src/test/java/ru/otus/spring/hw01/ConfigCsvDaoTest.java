@@ -11,7 +11,7 @@ import ru.otus.spring.hw01.service.LocaleMessageProvider;
 import ru.otus.spring.hw01.service.LocaleMessageProviderImpl;
 
 @Import(CsvDao.class)
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yml")
 @Configuration
 public class ConfigCsvDaoTest {
 	

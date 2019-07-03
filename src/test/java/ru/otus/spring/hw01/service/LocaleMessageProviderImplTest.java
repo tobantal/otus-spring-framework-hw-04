@@ -1,27 +1,21 @@
 package ru.otus.spring.hw01.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.BDDMockito.given;
 
 import java.util.Locale;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.MessageSource;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import ru.otus.spring.hw01.ConfigLocaleMessageProviderImplTest;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = ConfigLocaleMessageProviderImplTest.class)
-@ExtendWith(SpringExtension.class)
 @DisplayName("Класс LocaleMessageProviderImpl должен ")
 public class LocaleMessageProviderImplTest {
 
