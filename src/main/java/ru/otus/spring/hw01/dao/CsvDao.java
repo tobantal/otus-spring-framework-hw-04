@@ -12,13 +12,13 @@ import lombok.AllArgsConstructor;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.exception.ColumnNumberException;
 import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
-import ru.otus.spring.hw01.source.LocaleMessageProvider;
+import ru.otus.spring.hw01.source.LocaleInfo;
 
 @Component
 @AllArgsConstructor
 public class CsvDao implements TaskDao {
 
-	private final LocaleMessageProvider localeMessageProvider;
+	private final LocaleInfo localeInfo;
 
 	@Override
 	public Queue<Task> getTasks() {
@@ -36,8 +36,7 @@ public class CsvDao implements TaskDao {
 	}
 	
 	private String getCsvPath() {
-		return "tasks_" + localeMessageProvider.getLocale().getLanguage() + "_"
-				+ localeMessageProvider.getLocale().getCountry()+ ".csv";
+		return String.format("tasks_%s_%s.csv", localeInfo.getLocale().getLanguage(), localeInfo.getLocale().getCountry());
 	}
 
 	private InputStream getCsvFileInputStreamOrThrow(String csvPath) {

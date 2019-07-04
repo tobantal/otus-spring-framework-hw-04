@@ -14,14 +14,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
 import ru.otus.spring.hw01.ConfigCsvDaoTest;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.exception.ColumnNumberException;
 import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
-import ru.otus.spring.hw01.source.LocaleMessageProvider;
+import ru.otus.spring.hw01.source.LocaleInfo;
 
 
 @SpringBootTest
@@ -30,18 +29,15 @@ import ru.otus.spring.hw01.source.LocaleMessageProvider;
 class CsvDaoTest {
 	
 	@Autowired
-    ApplicationContext context;
+    private LocaleInfo localeInfo;
 	
 	@Autowired
-    LocaleMessageProvider fakeLocaleMessageProvider;
-	
-	@Autowired
-	TaskDao tasksSupplier;
+	private TaskDao tasksSupplier;
     
     @Test
     @DisplayName("выдавать корректные задачи из корректного csv-файла")
     void correct_loading_of_the_file() {
-    	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("en", "US"));
+    	given(localeInfo.getLocale()).willReturn(new Locale("en", "US"));
         Queue<Task> queue = tasksSupplier.getTasks();
         BiPredicate<Task, Long> p = (Task t, Long i) -> t.getId() == i && t.getQuestion().equals("Task" + i) && t.getAnswer().equals("Answer" + i);
         assertTrue(IntStream.rangeClosed(1, 5).allMatch(i -> p.test(queue.poll(), (long)i)));
@@ -51,14 +47,14 @@ class CsvDaoTest {
     @Test
     @DisplayName("выбрасывать ColumnNumberException при чтении csv-файла со столбцами длины < 3")
     void shouldThrowColumnNumberException() {
-    	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "ColumnNumberException"));
+    	given(localeInfo.getLocale()).willReturn(new Locale("ex", "ColumnNumberException"));
         assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(ColumnNumberException.class);
     }
     
     @Test
     @DisplayName("выбрасывать NullPointerException при чтении csv-файла со столбцами == null")
     void shouldThrowNullPointerException() {
-    	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "NullPointerException"));
+    	given(localeInfo.getLocale()).willReturn(new Locale("ex", "NullPointerException"));
         assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(NullPointerException.class);
     }
     
@@ -66,14 +62,14 @@ class CsvDaoTest {
     @Test
     @DisplayName("выбрасывать NumberFormatException при чтении csv-файла с нечисловым id")
     void shouldThrowNumberFormatException() {
-    	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "NumberFormatException"));
+    	given(localeInfo.getLocale()).willReturn(new Locale("ex", "NumberFormatException"));
     	assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(NumberFormatException.class);
     }
     
     @Test
     @DisplayName("выбрасывать CsvFileNotFoundException, если csv-файла не существует")
     void shouldThrowFileNotFoundException() {
-    	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "CsvFileNotFoundException"));
+    	given(localeInfo.getLocale()).willReturn(new Locale("ex", "CsvFileNotFoundException"));
     	assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(CsvFileNotFoundException.class);
     }
     

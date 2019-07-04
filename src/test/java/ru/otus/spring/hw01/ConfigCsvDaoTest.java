@@ -7,8 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 import ru.otus.spring.hw01.dao.CsvDao;
-import ru.otus.spring.hw01.source.LocaleMessageProvider;
-import ru.otus.spring.hw01.source.LocaleMessageProviderImpl;
+import ru.otus.spring.hw01.source.LocaleInfo;
 
 @Import(CsvDao.class)
 @PropertySource("classpath:application.yml")
@@ -16,8 +15,8 @@ import ru.otus.spring.hw01.source.LocaleMessageProviderImpl;
 public class ConfigCsvDaoTest {
 	
     @Bean
-    public LocaleMessageProvider fakeLocaleMessageProvider() {
-        return Mockito.mock(LocaleMessageProviderImpl.class);
+    public LocaleInfo localeInfo() {
+        return Mockito.mock(LocaleInfo.class);
     }
     
 }

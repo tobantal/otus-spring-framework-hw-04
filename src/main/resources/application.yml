@@ -1,5 +1,6 @@
-language: ru
-country: RU
+locale-info:
+  language: "ru"
+  country: "RU"
 
 spring:
   output:
