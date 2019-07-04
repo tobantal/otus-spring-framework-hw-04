@@ -3,5 +3,5 @@ application:
   base-name: "/i18n/bundle"
   default-encoding: "UTF-8"
 
-language: ru
-country: RU
+language: en
+country: US
