@@ -1,11 +1,10 @@
 package ru.otus.spring.hw01.service;
 
 import java.util.Queue;
-import java.util.function.Supplier;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import ru.otus.spring.hw01.dao.UserAnswerDao;
 import ru.otus.spring.hw01.dto.Twit;
 
 @Service
@@ -13,19 +12,19 @@ public class ExaminatorImpl implements Examinator {
 
 	private final AnswerTester answerTester;
 	private final ReportBuilder reportBuilder;
-	private final Supplier<Queue<Twit>> userAnswersSupplier;
+	private final UserAnswerDao userAnswerDao;
 
 	public ExaminatorImpl(
-			@Qualifier("userAnswersSupplier") Supplier<Queue<Twit>> userAnswersSupplier,
+			UserAnswerDao userAnswerDao,
 			AnswerTester answerTester,  
 			ReportBuilder reportBuilder) {
-		this.userAnswersSupplier = userAnswersSupplier;
+		this.userAnswerDao = userAnswerDao;
 		this.answerTester = answerTester;
 		this.reportBuilder = reportBuilder;
 	}
 
 	private Queue<Twit> askQuestions() {
-		return userAnswersSupplier.get();
+		return userAnswerDao.getUserAnswers();
 	}
 
 	private String checkAnswers(Queue<Twit> userAnswers) {

@@ -10,3 +10,7 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+      
+message-source:
+  default-encoding: "UTF-8"
+  basename: "/i18n/bundle"

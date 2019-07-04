@@ -5,11 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import ru.otus.spring.hw01.service.LocaleMessageProvider;
-import ru.otus.spring.hw01.service.LocaleMessageProviderImpl;
-import ru.otus.spring.hw01.service.ReportBuilder;
+import ru.otus.spring.hw01.service.ReportBuilderImpl;
+import ru.otus.spring.hw01.source.LocaleMessageProvider;
+import ru.otus.spring.hw01.source.LocaleMessageProviderImpl;
 
-@Import(ReportBuilder.class)
+@Import(ReportBuilderImpl.class)
 @Configuration
 public class ConfigReportBuilderTest {
 	

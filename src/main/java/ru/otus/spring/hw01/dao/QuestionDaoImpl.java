@@ -1,26 +1,24 @@
-package ru.otus.spring.hw01.repository;
+package ru.otus.spring.hw01.dao;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.function.Supplier;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-import ru.otus.spring.hw01.dao.TaskDao;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.dto.Twit;
 
-@Repository("questionsSupplier")
-public class QuestionsSupplier implements Supplier<Queue<Twit>> {
+@Component
+public class QuestionDaoImpl implements QuestionDao {
 
 	private final TaskDao taskDao;
 	
-	public QuestionsSupplier(TaskDao taskDao) {
+	public QuestionDaoImpl(TaskDao taskDao) {
 		this.taskDao = taskDao;
 	}
 
 	@Override
-	public Queue<Twit> get() {
+	public Queue<Twit> getQuestions() {
 		Queue<Task> tasks = taskDao.getTasks();
 		Queue<Twit> questions = new LinkedList<Twit>();
 		Task task;

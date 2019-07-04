@@ -1,14 +1,13 @@
-package ru.otus.spring.hw01.service;
+package ru.otus.spring.hw01.source;
 
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class LocaleMessageProviderImpl implements LocaleMessageProvider {
 
 	private final MessageSource messageSource;

@@ -1,11 +1,9 @@
 package ru.otus.spring.hw01.dao;
 
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.function.Supplier;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -14,7 +12,7 @@ import org.springframework.util.StringUtils;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.exception.ColumnNumberException;
 import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
-import ru.otus.spring.hw01.service.LocaleMessageProvider;
+import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 @Component
 @ConfigurationProperties("application")

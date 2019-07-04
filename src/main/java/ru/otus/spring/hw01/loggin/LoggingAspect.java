@@ -17,7 +17,7 @@ import ru.otus.spring.hw01.exception.TwitIdMatchedException;
 public class LoggingAspect {
 
 	@SuppressWarnings("unchecked")
-	@Around("execution(java.util.Queue<ru.otus.spring.hw01.dto.Twit> ru.otus.spring.hw01.service.UserAnswersSupplier.get())")
+	@Around("execution(java.util.Queue<ru.otus.spring.hw01.dto.Twit> ru.otus.spring.hw01.dao.UserAnswerDao.getUserAnswers())")
 	public Queue<Twit> checkUserInput(ProceedingJoinPoint proceedingJoinPoint) {
 		log.info(">>> Spring AOP start: checkUserInput");
 		

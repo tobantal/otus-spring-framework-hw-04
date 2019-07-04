@@ -1,26 +1,25 @@
 package ru.otus.spring.hw01.service;
 
 import java.util.Queue;
-import java.util.function.Supplier;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import ru.otus.spring.hw01.dao.AnswerDao;
 import ru.otus.spring.hw01.dto.Twit;
 import ru.otus.spring.hw01.exception.TwitIdMatchedException;
 
 @Service
 public class AnswerTesterImpl implements AnswerTester {
 
-	private final Supplier<Queue<Twit>> answersSupplier;
+	private final AnswerDao answerDao;
 
-	public AnswerTesterImpl(@Qualifier("answersSupplier") Supplier<Queue<Twit>> answersSupplier) {
-		this.answersSupplier = answersSupplier;
+	public AnswerTesterImpl(AnswerDao answerDao) {
+		this.answerDao = answerDao;
 	}
 
 	@Override
 	public String apply(Queue<Twit> userAnswers) {
-		Queue<Twit> rightAnswers = answersSupplier.get();
+		Queue<Twit> rightAnswers = answerDao.getAnswers();
 		int count = 0;
 		Twit rightAns;
 		Twit userAns;

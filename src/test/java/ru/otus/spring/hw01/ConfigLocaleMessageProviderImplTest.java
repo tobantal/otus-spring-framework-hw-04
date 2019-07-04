@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
-import ru.otus.spring.hw01.service.LocaleMessageProviderImpl;
+import ru.otus.spring.hw01.source.LocaleMessageProviderImpl;
 
 @Import(LocaleMessageProviderImpl.class)
 @PropertySource("classpath:application.yml")

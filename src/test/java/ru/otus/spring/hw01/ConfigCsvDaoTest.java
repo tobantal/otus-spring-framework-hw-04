@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 import ru.otus.spring.hw01.dao.CsvDao;
-import ru.otus.spring.hw01.service.LocaleMessageProvider;
-import ru.otus.spring.hw01.service.LocaleMessageProviderImpl;
+import ru.otus.spring.hw01.source.LocaleMessageProvider;
+import ru.otus.spring.hw01.source.LocaleMessageProviderImpl;
 
 @Import(CsvDao.class)
 @PropertySource("classpath:application.yml")

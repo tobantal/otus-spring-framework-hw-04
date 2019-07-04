@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import ru.otus.spring.hw01.ConfigReportBuilderTest;
+import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 @SpringBootTest
 @ContextConfiguration(classes = ConfigReportBuilderTest.class)
@@ -20,7 +21,7 @@ public class ReportBuilderTest {
     private LocaleMessageProvider fakeLocaleMessageProvider;
 	
 	@Autowired
-	private ReportBuilder reportBuilder;
+	private ReportBuilderImpl reportBuilder;
 	
 
 	@DisplayName("правильно выдавать правильный отчет")

@@ -6,7 +6,6 @@ import static org.mockito.BDDMockito.given;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.function.Supplier;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import ru.otus.spring.hw01.ConfigAnswerTesterImplTest;
+import ru.otus.spring.hw01.dao.AnswerDao;
 import ru.otus.spring.hw01.dto.Twit;
 import ru.otus.spring.hw01.exception.TwitIdMatchedException;
 
@@ -29,7 +29,7 @@ public class AnswerTesterImplTest {
 	private AnswerTester answerTester;
 
 	@Autowired
-	private Supplier<Queue<Twit>> answerSupplier;
+	private AnswerDao answerDao;
 
 	private Queue<Twit> userAnswers;
 	private Queue<Twit> rightAnswers;
@@ -45,7 +45,7 @@ public class AnswerTesterImplTest {
 	public void check_right_answer() {
 		rightAnswers.add(new Twit(1L, "a"));
 		userAnswers.add(new Twit(1L, "a"));
-		given(answerSupplier.get()).willReturn(rightAnswers);
+		given(answerDao.getAnswers()).willReturn(rightAnswers);
 		assertEquals("1", answerTester.apply(userAnswers));
 	}
 
@@ -54,7 +54,7 @@ public class AnswerTesterImplTest {
 	public void check_ignore_case() {
 		rightAnswers.add(new Twit(1L, "a"));
 		userAnswers.add(new Twit(1L, "A"));
-		given(answerSupplier.get()).willReturn(rightAnswers);
+		given(answerDao.getAnswers()).willReturn(rightAnswers);
 		assertEquals("1", answerTester.apply(userAnswers));
 	}
 
@@ -63,7 +63,7 @@ public class AnswerTesterImplTest {
 	public void check_wrong_answer() {
 		rightAnswers.add(new Twit(1L, "a"));
 		userAnswers.add(new Twit(1L, "x"));
-		given(answerSupplier.get()).willReturn(rightAnswers);
+		given(answerDao.getAnswers()).willReturn(rightAnswers);
 		assertEquals("0", answerTester.apply(userAnswers));
 	}
 
@@ -72,7 +72,7 @@ public class AnswerTesterImplTest {
 	public void check_not_equals_id() {
 		rightAnswers.add(new Twit(1L, "a"));
 		userAnswers.add(new Twit(2L, "a"));
-		given(answerSupplier.get()).willReturn(rightAnswers);
+		given(answerDao.getAnswers()).willReturn(rightAnswers);
 		assertThrows(TwitIdMatchedException.class, () -> {
 			answerTester.apply(userAnswers);
 		});
@@ -92,7 +92,7 @@ public class AnswerTesterImplTest {
 		userAnswers.add(new Twit(3L, "c"));
 		userAnswers.add(new Twit(4L, "y"));
 		userAnswers.add(new Twit(5L, "e"));
-		given(answerSupplier.get()).willReturn(rightAnswers);
+		given(answerDao.getAnswers()).willReturn(rightAnswers);
 		assertEquals("3", answerTester.apply(userAnswers));
 	}
 

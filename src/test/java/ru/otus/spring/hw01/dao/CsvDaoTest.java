@@ -8,14 +8,12 @@ import static org.mockito.BDDMockito.given;
 import java.util.Locale;
 import java.util.Queue;
 import java.util.function.BiPredicate;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -23,7 +21,7 @@ import ru.otus.spring.hw01.ConfigCsvDaoTest;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.exception.ColumnNumberException;
 import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
-import ru.otus.spring.hw01.service.LocaleMessageProvider;
+import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 
 @SpringBootTest
@@ -45,8 +43,8 @@ class CsvDaoTest {
     void correct_loading_of_the_file() {
     	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("en", "US"));
         Queue<Task> queue = tasksSupplier.getTasks();
-        BiPredicate<Task, Integer> p = (t, i) -> t.getId() == i && t.getQuestion().equals("Task" + i) && t.getAnswer().equals("Answer" + i);
-        assertTrue(IntStream.rangeClosed(1, 5).allMatch(i -> p.test(queue.poll(), i)));
+        BiPredicate<Task, Long> p = (Task t, Long i) -> t.getId() == i && t.getQuestion().equals("Task" + i) && t.getAnswer().equals("Answer" + i);
+        assertTrue(IntStream.rangeClosed(1, 5).allMatch(i -> p.test(queue.poll(), (long)i)));
         assertNull(queue.poll());
     }
     

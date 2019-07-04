@@ -13,6 +13,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.test.context.ContextConfiguration;
 
 import ru.otus.spring.hw01.ConfigLocaleMessageProviderImplTest;
+import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 @SpringBootTest
 @ContextConfiguration(classes = ConfigLocaleMessageProviderImplTest.class)

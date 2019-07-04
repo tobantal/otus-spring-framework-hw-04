@@ -1,4 +1,4 @@
-package ru.otus.spring.hw01.service;
+package ru.otus.spring.hw01.source;
 
 import java.util.Locale;
 

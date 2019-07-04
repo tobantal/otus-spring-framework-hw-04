@@ -1,30 +1,29 @@
-package ru.otus.spring.hw01.service;
+package ru.otus.spring.hw01.dao;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.function.Supplier;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ru.otus.spring.hw01.dto.Twit;
+import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
-@Service("userAnswersSupplier")
-public class UserAnswersSupplier implements Supplier<Queue<Twit>> {
+@Service
+public class UserAnswerDaoImpl implements UserAnswerDao {
 
-	private final Supplier<Queue<Twit>> questionsSupplier;
+	private final QuestionDao questionDao;
 	private final LocaleMessageProvider localeMessageProvider;
 
-	public UserAnswersSupplier(
-			@Qualifier("questionsSupplier") Supplier<Queue<Twit>> questionsSupplier,
+	public UserAnswerDaoImpl(
+			QuestionDao questionDao,
 			LocaleMessageProvider localeMessageProvider) {
-		this.questionsSupplier = questionsSupplier;
+		this.questionDao = questionDao;
 		this.localeMessageProvider = localeMessageProvider;
 	}
 
 	@Override
-	public Queue<Twit> get() {
+	public Queue<Twit> getUserAnswers() {
 		try (Scanner scanner = new Scanner(System.in)) {
 			Queue<Twit> answers = new LinkedList<Twit>();
 			Queue<Twit> questions = new LinkedList<Twit>();
@@ -32,7 +31,7 @@ public class UserAnswersSupplier implements Supplier<Queue<Twit>> {
 			Twit lastNameTwit = new Twit(-1L, localeMessageProvider.getMessage("question.lastname", null));
 			questions.add(firstNameTwit);
 			questions.add(lastNameTwit);
-			questions.addAll(questionsSupplier.get());
+			questions.addAll(questionDao.getQuestions());
 			questions.forEach(questionTwit -> {
 				System.out.println(questionTwit.getText());
 				String answerText = scanner.next();

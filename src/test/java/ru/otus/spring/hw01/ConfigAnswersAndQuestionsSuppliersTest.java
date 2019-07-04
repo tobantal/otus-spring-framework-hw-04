@@ -1,19 +1,16 @@
 package ru.otus.spring.hw01;
 
-import java.util.Queue;
-import java.util.function.Supplier;
-
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import ru.otus.spring.hw01.dao.CsvDao;
-import ru.otus.spring.hw01.dao.TaskDao;
-import ru.otus.spring.hw01.domain.Task;
-import ru.otus.spring.hw01.repository.AnswersSupplier;
-import ru.otus.spring.hw01.repository.QuestionsSupplier;
 
-@Import({AnswersSupplier.class, QuestionsSupplier.class})
+import ru.otus.spring.hw01.dao.AnswerDaoImpl;
+import ru.otus.spring.hw01.dao.CsvDao;
+import ru.otus.spring.hw01.dao.QuestionDaoImpl;
+import ru.otus.spring.hw01.dao.TaskDao;
+
+@Import({AnswerDaoImpl.class, QuestionDaoImpl.class})
 @Configuration
 public class ConfigAnswersAndQuestionsSuppliersTest {
 

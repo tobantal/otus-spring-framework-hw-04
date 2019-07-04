@@ -5,7 +5,6 @@ import static org.mockito.BDDMockito.given;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.function.Supplier;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import ru.otus.spring.hw01.ConfigAnswersAndQuestionsSuppliersTest;
+import ru.otus.spring.hw01.dao.AnswerDao;
 import ru.otus.spring.hw01.dao.TaskDao;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.dto.Twit;
@@ -24,7 +24,7 @@ import ru.otus.spring.hw01.dto.Twit;
 public class AnswersSupplierTest {
 	
 	@Autowired
-	private Supplier<Queue<Twit>> answersSupplier;
+	private AnswerDao answerDao;
 	
 	@Autowired
 	private TaskDao taskDao;
@@ -36,7 +36,7 @@ public class AnswersSupplierTest {
 		tasks.add(new Task(1L, "question1", "ans1"));
 		given(taskDao.getTasks()).willReturn(tasks);
 		
-		Twit ans = answersSupplier.get().poll();
+		Twit ans = answerDao.getAnswers().poll();
 		assertTrue(ans.getId().equals(1L));
 		assertTrue(ans.getText().equals("ans1"));
 	}
