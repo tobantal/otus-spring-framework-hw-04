@@ -1,6 +1,7 @@
 package ru.otus.spring.hw01.dao;
 
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -34,7 +35,7 @@ public class CsvDao implements TaskDao {
 
 		Queue<Task> queue = new LinkedList<>();
 
-		try (Scanner scanner = new Scanner(inputStream);) {
+		try (Scanner scanner = new Scanner(inputStream, "UTF-8");) {
 			while (scanner.hasNextLine()) {
 				Task task = taskParseOrThrow(scanner.nextLine());
 				queue.add(task);

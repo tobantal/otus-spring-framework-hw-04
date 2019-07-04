@@ -6,9 +6,10 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
+@Getter
 public class Twit {
-	
-	@Getter private final Long id;
-	@Getter private final String text;
+
+	private final Long id;
+	private final String text;
 
 }

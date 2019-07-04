@@ -3,8 +3,8 @@ application:
   base-name: "/i18n/bundle"
   default-encoding: "UTF-8"
 
-language: en
-country: US
+language: ru
+country: RU
 
 spring:
   output:
