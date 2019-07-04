@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import ru.otus.spring.hw01.dao.CsvDao;
+import ru.otus.spring.hw01.dao.TaskDao;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.repository.AnswersSupplier;
 import ru.otus.spring.hw01.repository.QuestionsSupplier;
@@ -17,7 +18,7 @@ import ru.otus.spring.hw01.repository.QuestionsSupplier;
 public class ConfigAnswersAndQuestionsSuppliersTest {
 
     @Bean
-    public Supplier<Queue<Task>> tasksSupplier() {
+    public TaskDao tasksSupplier() {
     	return Mockito.mock(CsvDao.class);
     }
 

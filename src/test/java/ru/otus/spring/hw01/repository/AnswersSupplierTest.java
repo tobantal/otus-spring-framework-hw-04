@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import ru.otus.spring.hw01.ConfigAnswersAndQuestionsSuppliersTest;
+import ru.otus.spring.hw01.dao.TaskDao;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.dto.Twit;
 
@@ -26,14 +27,14 @@ public class AnswersSupplierTest {
 	private Supplier<Queue<Twit>> answersSupplier;
 	
 	@Autowired
-	private Supplier<Queue<Task>> tasksSupplier;
+	private TaskDao tasksSupplier;
 	
 	@DisplayName("выводить правильные ответы")
 	@Test
 	public void shouldGetRightAnswers() {
 		Queue<Task> tasks = new LinkedList<>();
 		tasks.add(new Task(1L, "question1", "ans1"));
-		given(tasksSupplier.get()).willReturn(tasks);
+		given(tasksSupplier.getTasks()).willReturn(tasks);
 		
 		Twit ans = answersSupplier.get().poll();
 		assertTrue(ans.getId().equals(1L));

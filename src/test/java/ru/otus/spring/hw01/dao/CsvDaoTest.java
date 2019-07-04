@@ -38,13 +38,13 @@ class CsvDaoTest {
     LocaleMessageProvider fakeLocaleMessageProvider;
 	
 	@Autowired
-	Supplier<Queue<Task>> tasksSupplier;
+	TaskDao tasksSupplier;
     
     @Test
     @DisplayName("выдавать корректные задачи из корректного csv-файла")
     void correct_loading_of_the_file() {
     	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("en", "US"));
-        Queue<Task> queue = tasksSupplier.get();
+        Queue<Task> queue = tasksSupplier.getTasks();
         BiPredicate<Task, Integer> p = (t, i) -> t.getId() == i && t.getQuestion().equals("Task" + i) && t.getAnswer().equals("Answer" + i);
         assertTrue(IntStream.rangeClosed(1, 5).allMatch(i -> p.test(queue.poll(), i)));
         assertNull(queue.poll());
@@ -54,14 +54,14 @@ class CsvDaoTest {
     @DisplayName("выбрасывать ColumnNumberException при чтении csv-файла со столбцами длины < 3")
     void shouldThrowColumnNumberException() {
     	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "ColumnNumberException"));
-        assertThatThrownBy(tasksSupplier::get).isInstanceOf(ColumnNumberException.class);
+        assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(ColumnNumberException.class);
     }
     
     @Test
     @DisplayName("выбрасывать NullPointerException при чтении csv-файла со столбцами == null")
     void shouldThrowNullPointerException() {
     	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "NullPointerException"));
-        assertThatThrownBy(tasksSupplier::get).isInstanceOf(NullPointerException.class);
+        assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(NullPointerException.class);
     }
     
     
@@ -69,14 +69,14 @@ class CsvDaoTest {
     @DisplayName("выбрасывать NumberFormatException при чтении csv-файла с нечисловым id")
     void shouldThrowNumberFormatException() {
     	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "NumberFormatException"));
-    	assertThatThrownBy(tasksSupplier::get).isInstanceOf(NumberFormatException.class);
+    	assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(NumberFormatException.class);
     }
     
     @Test
     @DisplayName("выбрасывать CsvFileNotFoundException, если csv-файла не существует")
     void shouldThrowFileNotFoundException() {
     	given(fakeLocaleMessageProvider.getLocale()).willReturn(new Locale("ex", "CsvFileNotFoundException"));
-    	assertThatThrownBy(tasksSupplier::get).isInstanceOf(CsvFileNotFoundException.class);
+    	assertThatThrownBy(tasksSupplier::getTasks).isInstanceOf(CsvFileNotFoundException.class);
     }
     
 }

@@ -17,13 +17,9 @@ import ru.otus.spring.hw01.service.LocaleMessageProvider;
 
 @Component
 @ConfigurationProperties("application")
-public class CsvDao implements Supplier<Queue<Task>> {
+public class CsvDao implements TaskDao { //Supplier<Queue<Task>>
 	
 	private String delimeter = ";";
-
-	public String getDelimeter() {
-		return delimeter;
-	}
 
 	private final LocaleMessageProvider localeMessageProvider;
 
@@ -33,7 +29,7 @@ public class CsvDao implements Supplier<Queue<Task>> {
 	}
 
 	@Override
-	public Queue<Task> get() {
+	public Queue<Task> getTasks() {
 		InputStream inputStream = getCsvFileInputStreamOrThrow(getCsvPath());
 
 		Queue<Task> queue = new LinkedList<>();
