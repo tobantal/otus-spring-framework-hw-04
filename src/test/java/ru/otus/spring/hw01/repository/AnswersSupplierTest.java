@@ -27,14 +27,14 @@ public class AnswersSupplierTest {
 	private Supplier<Queue<Twit>> answersSupplier;
 	
 	@Autowired
-	private TaskDao tasksSupplier;
+	private TaskDao taskDao;
 	
 	@DisplayName("выводить правильные ответы")
 	@Test
 	public void shouldGetRightAnswers() {
 		Queue<Task> tasks = new LinkedList<>();
 		tasks.add(new Task(1L, "question1", "ans1"));
-		given(tasksSupplier.getTasks()).willReturn(tasks);
+		given(taskDao.getTasks()).willReturn(tasks);
 		
 		Twit ans = answersSupplier.get().poll();
 		assertTrue(ans.getId().equals(1L));

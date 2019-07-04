@@ -1,21 +1,14 @@
 package ru.otus.spring.hw01.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@ToString
 public class Twit {
 	
-	private final Long id;
-	private final String text;
-	
-	public Twit(Long id, String text) {
-		this.id = id;
-		this.text = text;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getText() {
-		return text;
-	}
+	@Getter private final Long id;
+	@Getter private final String text;
 
 }

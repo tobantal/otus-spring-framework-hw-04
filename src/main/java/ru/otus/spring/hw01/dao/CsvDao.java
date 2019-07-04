@@ -17,7 +17,7 @@ import ru.otus.spring.hw01.service.LocaleMessageProvider;
 
 @Component
 @ConfigurationProperties("application")
-public class CsvDao implements TaskDao { //Supplier<Queue<Task>>
+public class CsvDao implements TaskDao {
 	
 	private String delimeter = ";";
 

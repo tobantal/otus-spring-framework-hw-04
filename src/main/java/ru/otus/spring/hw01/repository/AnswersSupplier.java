@@ -13,15 +13,15 @@ import ru.otus.spring.hw01.dto.Twit;
 @Repository("answersSupplier")
 public class AnswersSupplier implements Supplier<Queue<Twit>> {
 
-	private final TaskDao tasksSupplier;
+	private final TaskDao taskDao;
 	
-	public AnswersSupplier(TaskDao tasksSupplier) {
-		this.tasksSupplier = tasksSupplier;
+	public AnswersSupplier(TaskDao taskDao) {
+		this.taskDao = taskDao;
 	}
 
 	@Override
 	public Queue<Twit> get() {
-		Queue<Task> tasks = tasksSupplier.getTasks();
+		Queue<Task> tasks = taskDao.getTasks();
 		Queue<Twit> answers = new LinkedList<Twit>();
 		Task task;
 		while ((task = tasks.poll()) != null) {
