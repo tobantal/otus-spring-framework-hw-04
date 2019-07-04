@@ -5,27 +5,20 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import lombok.AllArgsConstructor;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.exception.ColumnNumberException;
 import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
 import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 @Component
-@ConfigurationProperties("application")
+@AllArgsConstructor
 public class CsvDao implements TaskDao {
-	
-	private String delimeter = ";";
 
 	private final LocaleMessageProvider localeMessageProvider;
-
-	public CsvDao(LocaleMessageProvider localeMessageProvider) {
-		this.localeMessageProvider = localeMessageProvider;
-
-	}
 
 	@Override
 	public Queue<Task> getTasks() {
@@ -56,7 +49,7 @@ public class CsvDao implements TaskDao {
 	}
 
 	private Task taskParseOrThrow(String line) {
-		String[] args = line.split(delimeter);
+		String[] args = line.split(";");
 		if (args.length != 3) {
 			throw new ColumnNumberException();
 		}
