@@ -5,3 +5,8 @@ application:
 
 language: en
 country: US
+
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
