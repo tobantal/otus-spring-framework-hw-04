@@ -4,24 +4,17 @@ import java.util.Queue;
 
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import ru.otus.spring.hw01.dao.UserAnswerDao;
 import ru.otus.spring.hw01.dto.Twit;
 
 @Service
+@AllArgsConstructor
 public class ExaminatorImpl implements Examinator {
 
 	private final AnswerTester answerTester;
 	private final ReportBuilder reportBuilder;
 	private final UserAnswerDao userAnswerDao;
-
-	public ExaminatorImpl(
-			UserAnswerDao userAnswerDao,
-			AnswerTester answerTester,  
-			ReportBuilder reportBuilder) {
-		this.userAnswerDao = userAnswerDao;
-		this.answerTester = answerTester;
-		this.reportBuilder = reportBuilder;
-	}
 
 	private Queue<Twit> askQuestions() {
 		return userAnswerDao.getUserAnswers();

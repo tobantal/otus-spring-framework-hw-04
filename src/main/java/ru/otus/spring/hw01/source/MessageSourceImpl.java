@@ -8,14 +8,4 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("message-source")
 public class MessageSourceImpl extends ReloadableResourceBundleMessageSource {
 	
-	@Override
-	public void setBasename(String basename) {
-		super.setBasename(basename);
-	}
-	
-	@Override
-	public void setDefaultEncoding(String defaultEncoding) {
-		super.setDefaultEncoding(defaultEncoding);
-	}
-
 }

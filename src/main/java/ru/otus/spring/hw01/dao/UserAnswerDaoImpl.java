@@ -6,21 +6,16 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import ru.otus.spring.hw01.dto.Twit;
 import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 @Service
+@AllArgsConstructor
 public class UserAnswerDaoImpl implements UserAnswerDao {
 
 	private final QuestionDao questionDao;
 	private final LocaleMessageProvider localeMessageProvider;
-
-	public UserAnswerDaoImpl(
-			QuestionDao questionDao,
-			LocaleMessageProvider localeMessageProvider) {
-		this.questionDao = questionDao;
-		this.localeMessageProvider = localeMessageProvider;
-	}
 
 	@Override
 	public Queue<Twit> getUserAnswers() {

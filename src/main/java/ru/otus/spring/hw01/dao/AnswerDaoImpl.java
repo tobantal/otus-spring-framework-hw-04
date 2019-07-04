@@ -5,17 +5,15 @@ import java.util.Queue;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.dto.Twit;
 
 @Component
+@AllArgsConstructor
 public class AnswerDaoImpl implements AnswerDao {
 
 	private final TaskDao taskDao;
-	
-	public AnswerDaoImpl(TaskDao taskDao) {
-		this.taskDao = taskDao;
-	}
 
 	@Override
 	public Queue<Twit> getAnswers() {

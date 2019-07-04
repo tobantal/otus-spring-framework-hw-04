@@ -4,18 +4,16 @@ import java.util.Queue;
 
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import ru.otus.spring.hw01.dao.AnswerDao;
 import ru.otus.spring.hw01.dto.Twit;
 import ru.otus.spring.hw01.exception.TwitIdMatchedException;
 
 @Service
+@AllArgsConstructor
 public class AnswerTesterImpl implements AnswerTester {
 
 	private final AnswerDao answerDao;
-
-	public AnswerTesterImpl(AnswerDao answerDao) {
-		this.answerDao = answerDao;
-	}
 
 	@Override
 	public String apply(Queue<Twit> userAnswers) {
