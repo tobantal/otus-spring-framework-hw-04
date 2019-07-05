@@ -1,6 +1,6 @@
 locale-info:
-  language: "ru"
-  country: "RU"
+  language: "en"
+  country: "US"
 
 spring:
   output:

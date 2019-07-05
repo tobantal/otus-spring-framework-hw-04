@@ -8,10 +8,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 import ru.otus.spring.hw01.source.LocaleInfo;
-import ru.otus.spring.hw01.source.LocaleInfoImpl;
 import ru.otus.spring.hw01.source.LocaleMessageProviderImpl;
 
-@Import({LocaleMessageProviderImpl.class, LocaleInfoImpl.class})
+@Import(LocaleMessageProviderImpl.class)
 @PropertySource("classpath:application.yml")
 @Configuration
 public class ConfigLocaleMessageProviderImplTest {
@@ -21,4 +20,8 @@ public class ConfigLocaleMessageProviderImplTest {
 		return Mockito.mock(MessageSource.class);
 	}
 
+	@Bean
+	public LocaleInfo localeInfo() {
+		return Mockito.mock(LocaleInfo.class);
+	}
 }

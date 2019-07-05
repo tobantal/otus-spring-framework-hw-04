@@ -1,6 +1,7 @@
 package ru.otus.spring.hw01.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.BDDMockito.given;
 
 import java.util.Locale;
 
@@ -14,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 import ru.otus.spring.hw01.ConfigLocaleMessageProviderImplTest;
 import ru.otus.spring.hw01.source.LocaleInfo;
 import ru.otus.spring.hw01.source.LocaleMessageProvider;
-import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
 @ContextConfiguration(classes = ConfigLocaleMessageProviderImplTest.class)
@@ -30,21 +30,13 @@ public class LocaleMessageProviderImplTest {
 	@Autowired
 	private LocaleInfo localeInfo;
 	
-	
-	@DisplayName("правильно определять локаль из application.yml")
-	@Test
-	public void checkGetLocaleFromLocaleMessageProviderImpl() {
-		Locale locale = localeInfo.getLocale();
-		assertEquals("en", locale.getLanguage());
-		assertEquals("US", locale.getCountry());
-	}
-
 	@DisplayName("правильно получать сообщение, учитывая локаль")
 	@Test
 	public void checkGetMessageFromLocaleMessageProviderImpl() {
-		Locale locale = localeInfo.getLocale();
+		Locale locale = new Locale("en", "US");
 		String code = "qwery";
 		String[] args = {"a", "b", "c"};
+		given(localeInfo.getLocale()).willReturn(locale);
 		given(messageSource.getMessage(code, args, locale)).willReturn("xyz");
 		assertEquals("xyz", localeMessageProvider.getMessage(code, args));
 	}
