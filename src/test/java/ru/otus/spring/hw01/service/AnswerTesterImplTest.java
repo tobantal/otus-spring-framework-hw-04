@@ -12,23 +12,21 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-import ru.otus.spring.hw01.ConfigAnswerTesterImplTest;
 import ru.otus.spring.hw01.dao.AnswerDao;
 import ru.otus.spring.hw01.dto.Twit;
 import ru.otus.spring.hw01.exception.TwitIdMatchedException;
 
 
 @SpringBootTest
-@ContextConfiguration(classes = ConfigAnswerTesterImplTest.class)
 @DisplayName("Класс AnswerTesterImpl должен ")
 public class AnswerTesterImplTest {
 
 	@Autowired
 	private AnswerTester answerTester;
 
-	@Autowired
+	@MockBean
 	private AnswerDao answerDao;
 
 	private Queue<Twit> userAnswers;

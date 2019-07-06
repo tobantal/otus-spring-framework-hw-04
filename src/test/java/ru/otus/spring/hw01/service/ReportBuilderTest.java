@@ -7,17 +7,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-import ru.otus.spring.hw01.ConfigReportBuilderTest;
 import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 @SpringBootTest
-@ContextConfiguration(classes = ConfigReportBuilderTest.class)
 @DisplayName("Класс ReportBuilder должен ")
 public class ReportBuilderTest {
 	
-	@Autowired
+	@MockBean
     private LocaleMessageProvider fakeLocaleMessageProvider;
 	
 	@Autowired

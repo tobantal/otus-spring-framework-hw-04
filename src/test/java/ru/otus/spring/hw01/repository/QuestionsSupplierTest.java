@@ -10,23 +10,21 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-import ru.otus.spring.hw01.ConfigAnswersAndQuestionsSuppliersTest;
 import ru.otus.spring.hw01.dao.QuestionDao;
 import ru.otus.spring.hw01.dao.TaskDao;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.dto.Twit;
 
 @SpringBootTest
-@ContextConfiguration(classes = ConfigAnswersAndQuestionsSuppliersTest.class)
 @DisplayName("КлассQuestionsSupplier должен ")
 public class QuestionsSupplierTest {
 	
 	@Autowired
 	private QuestionDao questionDao;
 	
-	@Autowired
+	@MockBean
 	private TaskDao taskDao;
 	
 	@DisplayName("выводить правильные вопросы")

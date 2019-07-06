@@ -9,25 +9,23 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.MessageSource;
-import org.springframework.test.context.ContextConfiguration;
 
-import ru.otus.spring.hw01.ConfigLocaleMessageProviderImplTest;
 import ru.otus.spring.hw01.source.LocaleInfo;
 import ru.otus.spring.hw01.source.LocaleMessageProvider;
 
 @SpringBootTest
-@ContextConfiguration(classes = ConfigLocaleMessageProviderImplTest.class)
 @DisplayName("Класс LocaleMessageProviderImpl должен ")
 public class LocaleMessageProviderImplTest {
 
 	@Autowired
 	private LocaleMessageProvider localeMessageProvider;
 	
-	@Autowired
+	@MockBean
 	private MessageSource messageSource;
 	
-	@Autowired
+	@MockBean
 	private LocaleInfo localeInfo;
 	
 	@DisplayName("правильно получать сообщение, учитывая локаль")
