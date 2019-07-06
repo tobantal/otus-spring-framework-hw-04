@@ -14,9 +14,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-import ru.otus.spring.hw01.ConfigCsvDaoTest;
 import ru.otus.spring.hw01.domain.Task;
 import ru.otus.spring.hw01.exception.ColumnNumberException;
 import ru.otus.spring.hw01.exception.CsvFileNotFoundException;
@@ -24,11 +23,10 @@ import ru.otus.spring.hw01.source.LocaleInfo;
 
 
 @SpringBootTest
-@ContextConfiguration(classes = ConfigCsvDaoTest.class)
 @DisplayName("Класс CsvDao должен ")
 class CsvDaoTest {
 	
-	@Autowired
+	@MockBean
     private LocaleInfo localeInfo;
 	
 	@Autowired

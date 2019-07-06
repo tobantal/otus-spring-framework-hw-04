@@ -4,14 +4,8 @@ locale-info:
 
 spring:
   messages:
-    basename: /i18n/bundle
+    basename: i18n/bundle
     encoding: UTF-8
   output:
     ansi:
       enabled: ALWAYS
-
-      
-message-source:
-    basename: /i18n/bundle
-    encoding: UTF-8
-
